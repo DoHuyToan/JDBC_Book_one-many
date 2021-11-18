@@ -28,11 +28,8 @@
             <td>Category</td>
             <td>
                 <select name="category">
-                    <option> ${book.getCategory().name} </option>
                     <c:forEach items="${categoryList}" var="cas">
-                        <c:if test="${cas.name != book.getCategory().name}">
-                            <option  value="${cas.id}">${cas.name}</option>
-                        </c:if>
+                            <option value="${cas.id}">${cas.name}</option>
                     </c:forEach>
                 </select>
             </td>

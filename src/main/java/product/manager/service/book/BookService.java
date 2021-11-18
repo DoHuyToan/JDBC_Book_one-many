@@ -43,8 +43,8 @@ public class BookService implements IBookService{
         try {
             PreparedStatement ps = connection.prepareStatement("insert into book(name, description, idC) value (?,?,?)");
             // LẤY GIÁ TRỊ Ở NGOÀI TRUYỀN VÀO ĐỂ SET CHO LẦN LƯỢT CÁC GIÁ TRỊ ?
-            ps.setString(1, "name");
-            ps.setString(2, "description");
+            ps.setString(1, book.getName());
+            ps.setString(2, book.getDescription());
             ps.setInt(3, book.getCategory().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -58,8 +58,8 @@ public class BookService implements IBookService{
         try {
             PreparedStatement ps = connection.prepareStatement("update book set name=?, description=?, idC=? where idB=?");
             // LẤY GIÁ TRỊ Ở NGOÀI TRUYỀN VÀO ĐỂ SET CHO LẦN LƯỢT CÁC GIÁ TRỊ ?
-            ps.setString(1, "name");
-            ps.setString(2, "description");
+            ps.setString(1, book.getName());
+            ps.setString(2, book.getDescription());
             ps.setInt(3, book.getCategory().getId());
             ps.setInt(4, book.getId());
 
@@ -97,7 +97,7 @@ public class BookService implements IBookService{
                 String description = rs.getString("description");
                 int idC = rs.getInt("idC");
                 Category category = categoryService.findById(idC);
-                book = new Book();
+                book = new Book(name, description, category);
             }
         } catch (SQLException e) {
             e.printStackTrace();
