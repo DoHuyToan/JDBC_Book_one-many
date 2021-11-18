@@ -65,7 +65,6 @@ public class BookServlet extends HttpServlet {
         Category category = categoryService.findById(idCate);
         Book book = new Book(id, name, description, category);
         request.setAttribute("book", book);
-        request.setAttribute("categoryList", categoryService.findAll());
         request.setAttribute("message", "Edit success!");
         try {
             bookService.update(book);
